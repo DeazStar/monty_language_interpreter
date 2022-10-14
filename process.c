@@ -14,10 +14,27 @@ void process_file(char *buffer)
     int i = 0;
     char *dlim = "\n\t ";
     char *code = strtok(buffer, dlim);
+    char *is_digit = malloc(sizeof(char) * 20);
 
     if (strcmp(code, "push") == 0)
     {
-        op_param = atoi(strtok(NULL, dlim));
+        is_digit = strtok(NULL, dlim);
+
+        if (is_digit == NULL)
+        {
+            fprintf(stderr, "L<%d>: usage: push integer\n", line_number);
+            exit(EXIT_FAILURE);
+        }
+
+        if (_isint(is_digit))
+        {
+            op_param = atoi(is_digit);
+        }
+        else
+        {
+            fprintf(stderr, "L<%d>: usage: push integer\n", line_number);
+            exit(EXIT_FAILURE);
+        }
 
     }
 
