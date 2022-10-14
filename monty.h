@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
+#include <stdbool.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -41,7 +42,7 @@ extern int op_param;
 extern unsigned int line_number;
 stack_t *head;
 
-
+bool _isint(char *buffer);
 void process_file(char *buffer);
 void op_push(stack_t **stack, unsigned int line_number);
 void op_pall(stack_t **stack, unsigned int line_number);
