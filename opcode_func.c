@@ -199,5 +199,198 @@ void op_add(stack_t **stack, unsigned int line_number)
 
 void op_nop(stack_t **stack, unsigned int line_number)
 {
+	(void) stack;
+	(void) line_number;
 	return;
+}
+
+/**
+ * op_sub - subtracts the top two elements of the stack
+ * @stack: the pointer that points to the head node
+ * @line_number: the line number
+ */
+
+void op_sub(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	stack_t *tmp2 = *stack;
+	int sub = 0;
+	int i = 0;
+
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+
+
+	if (i < 2)
+	{
+		fprintf(stderr, "L<%d>: can't subtract, stack tooo short", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	tmp = *stack;
+	sub = tmp->n;
+	tmp = tmp->next;
+	sub -= tmp->n;
+
+	sub = sub * -1;
+
+	tmp->n = sub;
+
+	*stack = tmp;
+
+	free(tmp2);
+}
+
+/**
+ * op_div - divide the top two elements of the stack
+ * @stack: the pointer that points to the head node
+ * @line_number: the line number
+ */
+
+void op_div(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	stack_t *tmp2 = *stack;
+	int div;
+	int i = 0;
+
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+
+
+	if (i < 2)
+	{
+		fprintf(stderr, "L<%d>: can't divide, stack tooo short", line_number);
+		exit(EXIT_FAILURE);
+	}
+	tmp = *stack;
+
+	tmp2 = tmp->next;
+
+	if (tmp2->n == 0)
+	{
+		fprintf(stderr, "L<%d>: division by zero\n", line_number);
+	}
+
+	div = tmp2->n;
+
+	div = div / tmp->n;
+
+	tmp2->n = div;
+
+	*stack = tmp2;
+
+	free(tmp);
+}
+
+/**
+ * op_mul - multiply the top two elements of the stack
+ * @stack: the pointer that points to the head node
+ * @line_number: the line number
+ */
+
+void op_mul(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	stack_t *tmp2 = *stack;
+	int mul;
+	int i = 0;
+
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+
+
+	if (i < 2)
+	{
+		fprintf(stderr, "L<%d>: can't add, stack tooo short", line_number);
+		exit(EXIT_FAILURE);
+	}
+	tmp = *stack;
+
+	tmp2 = tmp->next;
+
+	mul = tmp2->n;
+
+	mul = mul * tmp->n;
+
+	tmp2->n = mul;
+
+	*stack = tmp2;
+
+	free(tmp);
+}
+
+/**
+ * op_mod - modules the top two elements of the stack
+ * @stack: the pointer that points to the head node
+ * @line_number: the line number
+ */
+
+void op_mod(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	stack_t *tmp2 = *stack;
+	int mod;
+	int i = 0;
+
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+
+
+	if (i < 2)
+	{
+		fprintf(stderr, "L<%d>: can't mod, stack tooo short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	tmp = *stack;
+
+	tmp2 = tmp->next;
+
+	if (tmp2->n == 0)
+	{
+		fprintf(stderr, "L<%d>: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	mod = tmp2->n;
+
+	mod = mod % tmp->n;
+
+	tmp2->n = mod;
+
+	*stack = tmp2;
+
+	free(tmp);
+}
+
+/**
+ * op_pchar - prints the char at the top of the stack.
+ * @stack: the pointer that points to the head node
+ * @line_number: the line number
+ */
+
+void op_pchar(stack_t **stack, unsigned int line_number)
+{
+	int n = (*stack)->n;
+	if ((n >= 0 && n <= 255))
+	{
+		putchar((*stack)->n);
+		printf("\n");
+		return;
+	}
+
+	fprintf(stderr, "L<%d>: can't pchar, stack empty\n", line_number);
+	exit(EXIT_FAILURE);
 }
