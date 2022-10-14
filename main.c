@@ -34,6 +34,7 @@ int main(int ac, char *argv[])
     while(getline(&buffer, &len, fp) != -1)
     {
         process_file(buffer);
+        line_number++;
     }
 
     return (0);
