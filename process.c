@@ -16,12 +16,21 @@ void process_file(char *buffer)
         {"swap", op_swap},
         {"add", op_add},
         {"nop", op_nop},
+        {"sub", op_sub},
+        {"div", op_div},
+        {"mul", op_mul},
+        {"pchar", op_pchar},
         {NULL, NULL}};
 
     int i = 0;
     char *dlim = "\n\t ";
     char *code = strtok(buffer, dlim);
     char *is_digit = malloc(sizeof(char) * 20);
+
+    if (code[0] == '#')
+    {
+        return;
+    }
 
     if (strcmp(code, "push") == 0)
     {
