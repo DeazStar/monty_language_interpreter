@@ -5,8 +5,11 @@ unsigned int line_number = 1;
 
 stack_t *head;
 /**
- * @brief
+ * main- the main function
+ * ac - the number of arguments
+ * argv - the arguments
  *
+ * Return: Always zero
  */
 
 
