@@ -1,14 +1,21 @@
 #include "monty.h"
 
 /**
- * @brief
+ * process_file - breka the buffer in to opcode and parameter and assign the proper function
+ * @buffer: a line of text
  *
+ * Return: Nothing
  */
 
 void process_file(char *buffer)
 {
     instruction_t insta[] = {{"push", op_push},
         {"pall", op_pall},
+        {"pint", op_pint},
+        {"pop", op_pop},
+        {"swap", op_swap},
+        {"add", op_add},
+        {"nop", op_nop},
         {NULL, NULL}};
 
     int i = 0;
